@@ -1,0 +1,40 @@
+/* mermaid 全屏：铺满预览区，盖住目录栏 */
+.mermaid-wrapper.mdfs-on {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-height: none !important;
+  margin: 0 !important;
+  z-index: 1000 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  background: var(--vscode-editor-background, #fff);
+}
+/* SVG 按屏幕等比放大（viewBox 默认 meet），留出工具条的位置 */
+.mermaid-wrapper.mdfs-on .mermaid-content svg {
+  max-width: none !important;
+  width: calc(100vw - 48px) !important;
+  height: calc(100vh - 56px) !important;
+  margin: 40px 0 0 0 !important; /* 水平居中交给官方的 centerContent（按容器宽度平移） */
+}
+.mermaid-wrapper.mdfs-on .mermaid-zoom-controls { opacity: 1 !important; top: 8px; right: 8px; }
+.mermaid-wrapper.mdfs-on .mermaid-resize-handle { display: none; }
+html.mdfs-lock, html.mdfs-lock body { overflow: hidden !important; }
+
+/* 和官方工具条按钮同一风格 */
+.mdfs-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; padding: 0;
+  background: transparent; color: var(--vscode-icon-foreground);
+  border: none; border-radius: 4px; cursor: pointer;
+}
+.mdfs-btn:hover { background: var(--vscode-toolbar-hoverBackground); }
+/* 官方工具条被关掉时的独立按钮 */
+.mdfs-btn.mdfs-solo {
+  position: absolute; top: 4px; right: 4px; z-index: 100;
+  background: var(--vscode-editorWidget-background);
+  border: 1px solid var(--vscode-editorWidget-border, transparent);
+}
+
+@media print { .mdfs-btn { display: none !important; } }

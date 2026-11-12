@@ -1,8 +1,8 @@
 {
   "name": "builtin-markdown-preview-toc",
   "displayName": "TOC for Built-in Markdown Preview",
-  "description": "Adds a table of contents sidebar to the left of the built-in Markdown preview, keeping all other built-in features (including Mermaid).",
-  "version": "0.1.2",
+  "description": "Adds a table of contents sidebar to the left of the built-in Markdown preview, plus a fullscreen button for Mermaid diagrams, keeping all other built-in features.",
+  "version": "0.2.1",
   "publisher": "larryz7",
   "license": "MIT",
   "repository": {
@@ -13,7 +13,7 @@
   "engines": { "vscode": "^1.80.0" },
   "categories": ["Other"],
   "contributes": {
-    "markdown.previewScripts": ["./media/toc.js"],
-    "markdown.previewStyles": ["./media/toc.css"]
+    "markdown.previewScripts": ["./media/toc.js", "./media/mermaid-fs.js"],
+    "markdown.previewStyles": ["./media/toc.css", "./media/mermaid-fs.css"]
   }
 }
