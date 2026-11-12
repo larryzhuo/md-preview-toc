@@ -1,0 +1,14 @@
+{
+  "name": "md-preview-toc",
+  "displayName": "Markdown Preview TOC",
+  "description": "在官方 Markdown 预览左侧加一个目录栏，其余功能（含 mermaid）沿用官方。",
+  "version": "0.1.2",
+  "publisher": "local",
+  "license": "MIT",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "contributes": {
+    "markdown.previewScripts": ["./media/toc.js"],
+    "markdown.previewStyles": ["./media/toc.css"]
+  }
+}

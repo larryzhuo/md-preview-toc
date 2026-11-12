@@ -1,0 +1,60 @@
+/* 颜色全部取自 VS Code 主题变量，明暗主题自动跟随 */
+:root {
+  --toc-w: clamp(180px, 30vw, 264px);
+  --toc-bg: var(--vscode-sideBar-background, var(--vscode-editor-background));
+  --toc-fg: var(--vscode-foreground);
+  --toc-muted: var(--vscode-descriptionForeground);
+  --toc-border: var(--vscode-panel-border, rgba(128, 128, 128, .25));
+  --toc-hover: var(--vscode-list-hoverBackground, rgba(128, 128, 128, .12));
+  --toc-accent: var(--vscode-textLink-foreground);
+  --toc-active-bg: var(--vscode-list-inactiveSelectionBackground, rgba(128, 128, 128, .18));
+}
+
+body.mdtoc-on { padding-left: calc(var(--toc-w) + 32px) !important; }
+body.mdtoc-on.mdtoc-collapsed { padding-left: 52px !important; }
+
+/* 正文排版：限制行宽、加大行距，接近 docs/技术方案.html */
+body.mdtoc-on { max-width: none; line-height: 1.7; }
+body.mdtoc-on > :not(.mdtoc):not(.mdtoc-btn) { max-width: 980px; }
+body.mdtoc-on h1, body.mdtoc-on h2, body.mdtoc-on h3 { scroll-margin-top: 16px; }
+
+.mdtoc {
+  position: fixed; top: 0; bottom: 0; left: 0; width: var(--toc-w);
+  overflow-y: auto; box-sizing: border-box; padding: 44px 10px 24px;
+  background: var(--toc-bg); border-right: 1px solid var(--toc-border);
+  font-size: 13px; line-height: 1.45; z-index: 20;
+  font-family: var(--vscode-font-family, -apple-system, "PingFang SC", sans-serif);
+}
+body.mdtoc-collapsed .mdtoc { display: none; }
+
+.mdtoc-btn {
+  position: fixed; top: 8px; left: 8px; z-index: 21;
+  width: 28px; height: 28px; padding: 0; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--vscode-button-border, transparent);
+  background: var(--vscode-button-secondaryBackground, var(--toc-hover));
+  color: var(--vscode-button-secondaryForeground, var(--toc-fg));
+  font-size: 15px; line-height: 26px; text-align: center; box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+}
+.mdtoc-btn:hover { background: var(--vscode-button-secondaryHoverBackground, var(--toc-hover)); }
+
+.mdtoc-item {
+  display: block; padding: 3px 8px; border-radius: 5px; cursor: pointer;
+  color: var(--toc-muted); text-decoration: none; overflow-wrap: anywhere;
+}
+.mdtoc-item:hover { background: var(--toc-hover); color: var(--toc-fg); }
+.mdtoc-item.l1 { color: var(--toc-fg); font-weight: 600; margin-top: 6px; }
+.mdtoc-item.l2 { color: var(--toc-fg); }
+.mdtoc-item.l3 { padding-left: 22px; font-size: 12.5px; display: none; }
+.mdtoc-item.l3.show { display: block; }
+.mdtoc-item.active { background: var(--toc-active-bg); color: var(--toc-accent); }
+
+/* 预览窗口窄时，目录改成浮层，不挤正文 */
+@media (max-width: 520px) {
+  body.mdtoc-on, body.mdtoc-on.mdtoc-collapsed { padding-left: 52px !important; }
+  .mdtoc { box-shadow: 0 0 24px rgba(0, 0, 0, .25); }
+}
+
+@media print {
+  .mdtoc, .mdtoc-btn { display: none !important; }
+  body.mdtoc-on { padding-left: 0 !important; }
+}
